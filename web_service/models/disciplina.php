@@ -68,7 +68,6 @@
             echo '<br>DiaSemana: '.$this->getDiaSemana();
             echo '<br>Curso: '.$this->getCurso();
             echo '<br>Professor: '.$this->getProfessor();
-
             echo '<br>';
         }
         
