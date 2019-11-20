@@ -2,3 +2,7 @@
 web_app/out/
 
 web_app/.idea/
+
+web_app/target/
+
+.idea/workspace.xml
