@@ -1,5 +1,10 @@
 package br.edu.usf.ads.web.models;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Aluno {
 
     private int id;
@@ -9,6 +14,12 @@ public class Aluno {
     @org.jetbrains.annotations.Contract(pure = true)
     public Aluno() {
         super();
+    }
+
+    public Aluno(int id, String ra, String nome) {
+        setId(id);
+        setRa(ra);
+        setNome(nome);
     }
 
     public int getId() {
@@ -35,4 +46,12 @@ public class Aluno {
         this.nome = nome;
     }
 
+    @NotNull
+    public static Aluno fromDAO(@NotNull ResultSet result) throws SQLException {
+        int id = result.getInt("id");
+        String ra = result.getString("ra");
+        String nome = result.getString("nome");
+
+        return new Aluno(id, ra, nome);
+    }
 }
