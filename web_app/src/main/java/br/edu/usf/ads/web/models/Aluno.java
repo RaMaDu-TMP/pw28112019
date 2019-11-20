@@ -6,6 +6,7 @@ public class Aluno {
     private String ra;
     private String nome;
 
+    @org.jetbrains.annotations.Contract(pure = true)
     public Aluno() {
         super();
     }
