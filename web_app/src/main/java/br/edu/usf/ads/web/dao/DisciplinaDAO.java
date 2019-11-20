@@ -102,8 +102,20 @@ public class DisciplinaDAO {
 
     private static boolean fillStatementFields(@NotNull Disciplina disciplina, @NotNull PreparedStatement stm) throws SQLException {
         stm.setString(1, disciplina.getNome());
-        stm.setString(2, disciplina.getTurno());
-        stm.setString(3, disciplina.getDiaSemana());
+
+        String turno = null;
+        String diaSemana = null;
+
+        if (disciplina.getTurno() != null) {
+            turno = disciplina.getTurno().toString();
+        }
+
+        if (disciplina.getDiaSemana() != null) {
+            diaSemana = disciplina.getDiaSemana().toString();
+        }
+
+        stm.setString(2, turno);
+        stm.setString(3, diaSemana);
 
         Curso curso = disciplina.getCurso();
         Professor professor = disciplina.getProfessor();
