@@ -1,13 +1,12 @@
 package br.edu.usf.ads.web.models;
 
-public class Aluno {
+public class Professor {
 
     private int id;
-    private String ra;
     private String nome;
 
     @org.jetbrains.annotations.Contract(pure = true)
-    public Aluno() {
+    public Professor() {
         super();
     }
 
@@ -17,14 +16,6 @@ public class Aluno {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getRa() {
-        return ra;
-    }
-
-    public void setRa(String ra) {
-        this.ra = ra;
     }
 
     public String getNome() {
