@@ -86,7 +86,7 @@ public class Disciplina {
         String nome = result.getString("nome");
         TURNO turno = TURNO.valueOf(result.getString("turno"));
         DIA_SEMANA diaSemana = DIA_SEMANA.valueOf(result.getString("dia_semana"));
-        Curso curso  = CursoDAO.getById(result.getInt("curso_id"));
+        Curso curso = CursoDAO.getById(result.getInt("curso_id"));
         Professor professor = ProfessorDAO.getById(result.getInt("professor_id"));
 
         return new Disciplina(id, nome, turno, diaSemana, curso, professor);
