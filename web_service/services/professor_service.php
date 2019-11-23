@@ -19,7 +19,7 @@
                         $response['code'] = 1;
                         $response['message'] = 'Succes!';
                     } else {
-                        throw new InvalidArgumentException('Command missing argument!');
+                        throw new InvalidArgumentException("Command missing argument! Expected 'nome'");
                     }
                     break;
                 
@@ -51,7 +51,7 @@
                             throw new InvalidArgumentException('Not found');
                         }
                     } else {
-                        throw new InvalidArgumentException('Command missing id argument');
+                        throw new InvalidArgumentException("Command missing argument! Expected 'id'");
                     }
                     break;
                 
@@ -66,7 +66,7 @@
                         $response['code'] = 1;
                         $response['message'] = 'Succes!';
                     } else {
-                        throw new InvalidArgumentException('Command missing argument!');
+                        throw new InvalidArgumentException("Command missing argument! Expected 'id' and 'name'");
                     }
                     break;
                 
@@ -82,10 +82,10 @@
                     break;
                 
                 default:
-                    throw new InvalidArgumentException('Command invalid');
+                    throw new InvalidArgumentException("Invalid command! Current commands are: 'insert', 'getAll', 'getById', 'update' and 'delete'");
             }
         } else {
-            throw new InvalidArgumentException('Empty command');
+            throw new InvalidArgumentException("Empty command! Current commands are: 'insert', 'getAll', 'getById', 'update' and 'delete'");
         }
 
     } catch (InvalidArgumentException $e) {
