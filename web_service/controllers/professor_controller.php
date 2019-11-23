@@ -1,13 +1,13 @@
 <?php
     class ProfessorController {
         
-        public static function insert($prof) {
+        public static function insert($professor) {
             require_once 'database.php';
             $conn = Database::connection();
 
             $stm = $conn->prepare('INSERT INTO professores(nome) VALUES(:nome)');
 
-            $stm->bindValue(":nome", $prof->getNome());
+            $stm->bindValue(":nome", $professor->getNome());
             $stm->execute();
         }
 
@@ -22,8 +22,8 @@
 
             $ret = array();
             foreach ($result as $r) {
-                $prof = Professor::fromPDO($r);
-                $ret[]=$prof;
+                $professor = Professor::fromPDO($r);
+                $ret[] = $professor;
             }
 
             return $ret;
@@ -44,15 +44,15 @@
             return Professor::fromPDO($result[0]);
         }
 
-        public static function update($prof) {
+        public static function update($professor) {
             require_once 'database.php';
             $conn = Database::connection();
             
             $stm = $conn->prepare('UPDATE professores SET nome = :nome WHERE id = :id');
 
-            $stm->bindValue(":nome", $prof->getNome());
+            $stm->bindValue(":nome", $professor->getNome());
 
-            $stm->bindValue(":id", $prof->getId());
+            $stm->bindValue(":id", $professor->getId());
             $stm->execute();
         }
 

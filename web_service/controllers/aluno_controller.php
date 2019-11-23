@@ -20,7 +20,14 @@
             $stm->execute();
 
             $result = $stm->fetchAll();
-            return $result;
+
+            $ret = array();
+            foreach ($result as $r) {
+                $aluno = Aluno::fromPDO($r);
+                $ret[] = $aluno;
+            }
+
+            return $ret;
         }
 
         public static function getById($id) {
@@ -35,7 +42,7 @@
             if (is_null($result) || empty($result)) {
                 return NULL;
             }
-            return $result[0];
+            return Aluno::fromPDO($result[0]);
         }
 
         public static function update($aluno) {

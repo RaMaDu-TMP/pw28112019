@@ -1,13 +1,13 @@
 <?php
     class ProjetoController {
         
-        public static function insert($func) {
+        public static function insert($projeto) {
             require_once 'database.php';
             $conn = Database::connection();
 
             $stm = $conn->prepare('INSERT INTO projetos(nome) VALUES(:nome)');
 
-            $stm->bindValue(":nome", $func->getNome());
+            $stm->bindValue(":nome", $projeto->getNome());
             $stm->execute();
         }
 
@@ -19,7 +19,14 @@
             $stm->execute();
 
             $result = $stm->fetchAll();
-            return $result;
+            
+            $ret = array();
+            foreach ($result as $r) {
+                $projeto = Projeto::fromPDO($r);
+                $ret[] = $projeto;
+            }
+
+            return $ret;
         }
 
         public static function getById($id) {
@@ -34,27 +41,27 @@
             if (is_null($result) || empty($result)) {
                 return NULL;
             }
-            return $result[0];
+            return Projeto::fromPDO($result[0]);
         }
 
-        public static function update($func) {
+        public static function update($projeto) {
             require_once 'database.php';
             $conn = Database::connection();
             
             $stm = $conn->prepare('UPDATE projetos SET nome = :nome WHERE id = :id');
 
-            $stm->bindValue(":nome", $func->getNome());
+            $stm->bindValue(":nome", $projeto->getNome());
 
-            $stm->bindValue(":id", $func->getId());
+            $stm->bindValue(":id", $projeto->getId());
             $stm->execute();
         }
 
-        public static function delete($func) {
+        public static function delete($projeto) {
             require_once 'database.php';
             $conn = Database::connection();
             
             $stm = $conn->prepare('DELETE FROM projetos WHERE id = :id');
-            $stm->bindValue(":id", $func->getId());
+            $stm->bindValue(":id", $projeto->getId());
             $stm->execute();
         }
     }
