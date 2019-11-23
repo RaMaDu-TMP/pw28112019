@@ -61,7 +61,7 @@
             $conn = Database::connection();
             
             $stm = $conn->prepare('DELETE FROM projetos WHERE id = :id');
-            $stm->bindValue(":id", $projeto->getId());
+            $stm->bindValue(":id", $projeto);
             $stm->execute();
         }
     }
