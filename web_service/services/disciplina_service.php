@@ -60,7 +60,6 @@
                     break;
                 
                 case 'update':
-                    // http://localhost/pw/web_service/services/disciplina_service.php?cmd=update&id=2&nome=ASD&turno=MATUTINO&dia_semana=SEG&curso_id=1&professor_id=10
                     if (isset($_GET['id']) && isset($_GET['nome']) && isset($_GET['turno']) && isset($_GET['dia_semana']) && isset($_GET['curso_id']) && isset($_GET['professor_id'])) {
                         $disciplina = new Disciplina();
                         $disciplina->setId($_GET['id']);

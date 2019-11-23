@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 23/11/2019 às 14:09
+-- Tempo de geração: 23/11/2019 às 19:15
 -- Versão do servidor: 10.4.6-MariaDB
 -- Versão do PHP: 7.3.9
 
@@ -34,6 +34,21 @@ CREATE TABLE `alunos` (
   `nome` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Despejando dados para a tabela `alunos`
+--
+
+INSERT INTO `alunos` (`id`, `ra`, `nome`) VALUES
+(1, '002201801390', 'Eduwardo Keizo Horibe Junior'),
+(2, '002201800533', 'Rafael Soares Tôres'),
+(3, '002201800485', 'Matheus Gaboardi Tralli'),
+(4, '002201152765', 'Hugo Caleb Daniel Cavalcanti'),
+(5, '002201211952', 'Enzo Breno Geraldo Barros'),
+(6, '002201485776', 'Enzo Bruno Drumond'),
+(7, '002201404169', 'Benedita Letícia da Silva'),
+(8, '002201210619', 'Rita Kamilly Lívia Bernardes'),
+(9, '002201021119', 'Bryan Henrique José Caldeira');
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +59,17 @@ CREATE TABLE `cursos` (
   `id` int(11) NOT NULL,
   `nome` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Despejando dados para a tabela `cursos`
+--
+
+INSERT INTO `cursos` (`id`, `nome`) VALUES
+(1, 'Engenharia da Computação'),
+(2, 'Pedagogia'),
+(3, 'Ciência da Computação'),
+(4, 'Matemárica'),
+(5, 'Análise e Desenvolvimento de Sistemas');
 
 -- --------------------------------------------------------
 
@@ -73,6 +99,15 @@ CREATE TABLE `grupos` (
   `projeto_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Despejando dados para a tabela `grupos`
+--
+
+INSERT INTO `grupos` (`id`, `disciplina_id`, `aluno_id`, `projeto_id`) VALUES
+(1, 1, 1, 1),
+(2, 2, 2, 2),
+(3, 3, 3, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -89,15 +124,15 @@ CREATE TABLE `professores` (
 --
 
 INSERT INTO `professores` (`id`, `nome`) VALUES
-(1, 'K'),
-(2, 'O'),
-(3, 'N'),
-(4, 'O'),
-(5, 'D'),
-(6, 'I'),
-(7, 'O'),
-(8, 'D'),
-(9, 'A');
+(1, 'Sueli Rosângela Kamilly Cardoso'),
+(2, 'Bruno Tomás das Neves'),
+(3, 'Elisa Fátima Emily Araújo'),
+(4, 'Arthur Iago Ramos'),
+(5, 'Giovanna Raimunda Carolina Fogaça'),
+(6, 'Larissa Bárbara Fogaça'),
+(7, 'Mário Fernando da Luz'),
+(8, 'Vinicius Pietro Carlos da Cruz'),
+(9, 'Kauê Carlos Sebastião Moraes');
 
 -- --------------------------------------------------------
 
@@ -109,6 +144,21 @@ CREATE TABLE `projetos` (
   `id` int(11) NOT NULL,
   `nome` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Despejando dados para a tabela `projetos`
+--
+
+INSERT INTO `projetos` (`id`, `nome`) VALUES
+(1, 'SRKC'),
+(2, 'BTN'),
+(3, 'EFA'),
+(4, 'AIR'),
+(5, 'GRCF'),
+(6, 'LBF'),
+(7, 'MFL'),
+(8, 'VPCC'),
+(9, 'KCSM');
 
 --
 -- Índices de tabelas apagadas
@@ -162,37 +212,37 @@ ALTER TABLE `projetos`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `disciplinas`
 --
 ALTER TABLE `disciplinas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `grupos`
 --
 ALTER TABLE `grupos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `professores`
 --
 ALTER TABLE `professores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `projetos`
 --
 ALTER TABLE `projetos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restrições para dumps de tabelas
