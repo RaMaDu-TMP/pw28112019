@@ -1,5 +1,5 @@
 <?php
-    include '../models/projeto.php';
+    require_once '../models/projeto.php';
 
     class ProjetoController {
         

@@ -1,5 +1,5 @@
 <?php
-    include '../models/professor.php';
+    require_once '../models/professor.php';
 
     class ProfessorController {
         

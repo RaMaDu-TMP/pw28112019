@@ -1,5 +1,5 @@
 <?php
-    include '../models/aluno.php';
+    require_once '../models/aluno.php';
 
     class AlunoController {
         

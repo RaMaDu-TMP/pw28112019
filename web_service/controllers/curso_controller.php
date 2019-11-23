@@ -1,5 +1,5 @@
 <?php
-    include '../models/curso.php';
+    require_once '../models/curso.php';
 
     class CursoController {
         

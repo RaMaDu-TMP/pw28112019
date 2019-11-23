@@ -1,5 +1,5 @@
 <?php
-    include '../models/grupo.php';
+    require_once '../models/grupo.php';
 
     class GrupoController {
         

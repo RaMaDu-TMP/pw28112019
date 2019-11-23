@@ -1,5 +1,5 @@
 <?php
-    include '../models/disciplina.php';
+    require_once '../models/disciplina.php';
 
     class DisciplinaController {
         
