@@ -56,12 +56,12 @@
             $stm->execute();
         }
 
-        public static function delete($curso) {
+        public static function delete($id) {
             require_once 'database.php';
             $conn = Database::connection();
             
             $stm = $conn->prepare('DELETE FROM cursos WHERE id = :id');
-            $stm->bindValue(":id", $curso->getId());
+            $stm->bindValue(":id", $id);
             $stm->execute();
         }
     }
