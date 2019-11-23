@@ -54,8 +54,8 @@ CREATE TABLE `cursos` (
 CREATE TABLE `disciplinas` (
   `id` int(11) NOT NULL,
   `nome` text NOT NULL,
-  `turno` text NOT NULL,
-  `dia_semana` text NOT NULL,
+  `turno` ENUM('MATUTINO', 'VESPERTINO', 'NOTURNO') NOT NULL,
+  `dia_semana` ENUM('SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB', 'DOM') NOT NULL,
   `curso_id` int(11) NOT NULL,
   `professor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

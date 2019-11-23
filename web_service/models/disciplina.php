@@ -1,6 +1,12 @@
 <?php
     require_once 'exposable.php';
 
+    require_once '../controllers/curso_controller.php';
+    require_once '../controllers/professor_controller.php';
+
+    require_once '../enum/TURNO.php';
+    require_once '../enum/DIA_SEMANA.php';
+
     class Disciplina implements Exposable {
 
         private $id;
@@ -36,6 +42,10 @@
         }
         
         function setTurno($turno) {
+            if (!TURNO::validEnum($turno)) {
+                throw new InvalidArgumentException("'".$turno."' is not a valid TURNO enum! Current valid values: ".implode(", ", TURNO::values()));
+            }
+            
             $this->turno = $turno;
         }
         function getDiaSemana() {
@@ -43,6 +53,10 @@
         }
         
         function setDiaSemana($diaSemana) {
+            if (!DIA_SEMANA::validEnum($diaSemana)) {
+                throw new InvalidArgumentException("'".$diaSemana."' is not a valid DIA_SEMANA enum! Current valid values: ".implode(", ", DIA_SEMANA::values()));
+            }
+
             $this->diaSemana = $diaSemana;
         }
 
@@ -51,7 +65,15 @@
         }
         
         function setCurso($curso) {
-            $this->curso = $curso;
+            if (is_numeric($curso)) {
+                $curso = CursoController::getById($curso);
+            }
+
+            if ($curso instanceof Curso) {
+                $this->curso = $curso;
+            } else {
+                throw new InvalidArgumentException("'".$curso."' is not a valid Curso instance");
+            }
         }
 
         function getProfessor() {
@@ -59,11 +81,23 @@
         }
         
         function setProfessor($professor) {
-            $this->professor = $professor;
+            if (is_numeric($professor)) {
+                $professor = ProfessorController::getById($professor);
+            }
+
+            if ($professor instanceof Professor) {
+                $this->professor = $professor;
+            } else {
+                throw new InvalidArgumentException("'".$professor."' is not a valid Professor instance");
+            }
         }
 
         function expose() {
-            return get_object_vars($this);
+            $vars = get_object_vars($this);
+            $vars['curso'] = $this->curso->expose();
+            $vars['professor'] = $this->professor->expose();
+
+            return $vars;
         }
         
         function printInfo() {
@@ -84,10 +118,7 @@
             $discipline->setTurno($fPDO['turno']);
             $discipline->setDiaSemana($fPDO['dia_semana']);
 
-            require_once '../controllers/curso_controller.php';
             $discipline->setCurso(CursoController::getById($fPDO['curso_id']));
-
-            require_once '../controllers/professor_controller.php';
             $discipline->setProfessor(ProfessorController::getById($fPDO['professor_id']));
         
             return $discipline;
