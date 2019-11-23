@@ -59,17 +59,17 @@
         }
         
         public static function fromPDO($fPDO) {
-            $class = new Grupo();
-            $class->setId($fPDO['id']);
-            $class->setDisciplina($fPDO['disciplina']);
+            $group = new Grupo();
+            $group->setId($fPDO['id']);
+            $group->setDisciplina($fPDO['disciplina']);
 
             require_once '../controllers/aluno_controller.php';
-            $class->setDisciplina(AlunoController::getById($fPDO['aluno_id']));
+            $group->setDisciplina(AlunoController::getById($fPDO['aluno_id']));
 
             require_once '../controllers/projeto_controller.php';
-            $class->setDisciplina(ProjetoController::getById($fPDO['projeto_id']));
+            $group->setDisciplina(ProjetoController::getById($fPDO['projeto_id']));
         
-            return $class;
+            return $group;
         }
     }
 ?>

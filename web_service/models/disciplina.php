@@ -78,19 +78,19 @@
         }
         
         public static function fromPDO($fPDO) {
-            $class = new Disciplina();
-            $class->setId($fPDO['id']);
-            $class->setNome($fPDO['nome']);
-            $class->setTurno($fPDO['turno']);
-            $class->setDiaSemana($fPDO['dia_semana']);
+            $discipline = new Disciplina();
+            $discipline->setId($fPDO['id']);
+            $discipline->setNome($fPDO['nome']);
+            $discipline->setTurno($fPDO['turno']);
+            $discipline->setDiaSemana($fPDO['dia_semana']);
 
             require_once '../controllers/curso_controller.php';
-            $class->setCurso(CursoController::getById($fPDO['curso_id']));
+            $discipline->setCurso(CursoController::getById($fPDO['curso_id']));
 
             require_once '../controllers/professor_controller.php';
-            $class->setProfessor(ProfessorController::getById($fPDO['professor_id']));
+            $discipline->setProfessor(ProfessorController::getById($fPDO['professor_id']));
         
-            return $class;
+            return $discipline;
         }
     }
 ?>
