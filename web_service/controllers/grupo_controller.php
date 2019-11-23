@@ -63,14 +63,14 @@
             $conn = Database::connection();
             
             $stm = $conn->prepare('UPDATE grupos '.
-                                    'SET nome = disciplina_id = :disciplina_id, aluno_id = :aluno_id, projeto_id = :projeto_id '.
+                                    'SET disciplina_id = :disciplina_id, aluno_id = :aluno_id, projeto_id = :projeto_id '.
                                     'WHERE id = :id');
 
             $stm->bindValue(":disciplina_id", $grupo->getDisciplina()->getId());
             $stm->bindValue(":aluno_id", $grupo->getAluno()->getId());
             $stm->bindValue(":projeto_id", $grupo->getProjeto()->getId());
 
-            $stm->bindValue(":id", $disciplina->getId());
+            $stm->bindValue(":id", $grupo->getId());
             $stm->execute();
         }
 

@@ -34,7 +34,11 @@
                 $disciplina = DisciplinaController::getById($disciplina);
             }
 
-            $this->disciplina = $disciplina;
+            if ($disciplina instanceof Disciplina) {
+                $this->disciplina = $disciplina;
+            } else {
+                throw new InvalidArgumentException("'".$disciplina."' is not a valid Disciplina instance");
+            }
         }
         
         function getAluno() {
@@ -46,7 +50,11 @@
                 $aluno = AlunoController::getById($aluno);
             }
 
-            $this->aluno = $aluno;
+            if ($aluno instanceof Aluno) {
+                $this->aluno = $aluno;
+            } else {
+                throw new InvalidArgumentException("'".$aluno."' is not a valid Aluno instance");
+            }
         }
         
         function getProjeto() {
@@ -55,13 +63,24 @@
         
         function setProjeto($projeto) {
             if (is_numeric($projeto)) {
-                echo "YEEEEO";
                 $projeto = ProjetoController::getById($projeto);
             }
 
-            $this->projeto = $projeto;
+            if ($projeto instanceof Projeto) {
+                $this->projeto = $projeto;
+            } else {
+                throw new InvalidArgumentException("'".$projeto."' is not a valid Projeto instance");
+            }
         }
-        
+
+        function expose() {
+            $vars = get_object_vars($this);
+            $vars['aluno'] = $this->aluno->expose();
+            $vars['projeto'] = $this->projeto->expose();
+
+            return $vars;
+        }
+
         function printInfo() {
             echo '<br>---------------[GRUPO]---------------';
             echo '<br>ID: '.$this->getId();
@@ -70,19 +89,14 @@
             echo '<br>Projeto: '.$this->getProjeto();
             echo '<br>';
         }
-
-        function expose() {
-            return get_object_vars($this);
-        }
         
         public static function fromPDO($fPDO) {
             $group = new Grupo();
             $group->setId($fPDO['id']);
-
-            $group->setDisciplina(DisciplinaController::getById($fPDO['disciplina']));
-            $group->setDisciplina(AlunoController::getById($fPDO['aluno_id']));
-
-            $group->setDisciplina(ProjetoController::getById($fPDO['projeto_id']));
+            
+            $group->setDisciplina(DisciplinaController::getById($fPDO['disciplina_id']));
+            $group->setAluno(AlunoController::getById($fPDO['aluno_id']));
+            $group->setProjeto(ProjetoController::getById($fPDO['projeto_id']));
         
             return $group;
         }
