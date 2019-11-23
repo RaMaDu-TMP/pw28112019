@@ -87,8 +87,7 @@
         } else {
             throw new InvalidArgumentException("Empty command! Current commands are: 'insert', 'getAll', 'getById', 'update' and 'delete'");
         }
-
-    } catch (InvalidArgumentException $e) {
+    } catch (Exception $e) {
         $response['code'] = $e->getCode();
         $response['message'] = $e->getMessage();
     }
