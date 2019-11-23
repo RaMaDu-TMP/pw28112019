@@ -1,5 +1,5 @@
 <?php
-    include 'exposable.php';
+    require_once 'exposable.php';
 
     class Professor implements Exposable {
 

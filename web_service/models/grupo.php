@@ -1,5 +1,9 @@
 <?php
-    include 'exposable.php';
+    require_once 'exposable.php';
+
+    include '../controllers/aluno_controller.php';
+    include '../controllers/projeto_controller.php';
+    include '../controllers/disciplina_controller.php';
 
     class Grupo implements Exposable {
 
@@ -26,6 +30,10 @@
         }
         
         function setDisciplina($disciplina) {
+            if (is_numeric($disciplina)) {
+                $disciplina = DisciplinaController::getById($disciplina);
+            }
+
             $this->disciplina = $disciplina;
         }
         
@@ -34,6 +42,10 @@
         }
         
         function setAluno($aluno) {
+            if (is_numeric($aluno)) {
+                $aluno = AlunoController::getById($aluno);
+            }
+
             $this->aluno = $aluno;
         }
         
@@ -42,6 +54,11 @@
         }
         
         function setProjeto($projeto) {
+            if (is_numeric($projeto)) {
+                echo "YEEEEO";
+                $projeto = ProjetoController::getById($projeto);
+            }
+
             $this->projeto = $projeto;
         }
         
@@ -61,12 +78,10 @@
         public static function fromPDO($fPDO) {
             $group = new Grupo();
             $group->setId($fPDO['id']);
-            $group->setDisciplina($fPDO['disciplina']);
 
-            require_once '../controllers/aluno_controller.php';
+            $group->setDisciplina(DisciplinaController::getById($fPDO['disciplina']));
             $group->setDisciplina(AlunoController::getById($fPDO['aluno_id']));
 
-            require_once '../controllers/projeto_controller.php';
             $group->setDisciplina(ProjetoController::getById($fPDO['projeto_id']));
         
             return $group;
