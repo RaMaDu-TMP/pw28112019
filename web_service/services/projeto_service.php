@@ -77,7 +77,7 @@
                         $response['code'] = 1;
                         $response['message'] = 'Succes!';
                     } else {
-                        throw new InvalidArgumentException('Command missing argument!');
+                        throw new InvalidArgumentException("Command missing argument! Expected 'id'");
                     }
                     break;
                 
