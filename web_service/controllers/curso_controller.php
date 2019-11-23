@@ -1,4 +1,6 @@
 <?php
+    include '../models/curso.php';
+
     class CursoController {
         
         public static function insert($curso) {

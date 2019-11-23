@@ -1,4 +1,6 @@
 <?php
+    include '../models/professor.php';
+
     class ProfessorController {
         
         public static function insert($professor) {

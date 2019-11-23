@@ -1,4 +1,6 @@
 <?php
+    include '../models/disciplina.php';
+
     class DisciplinaController {
         
         public static function insert($disciplina) {

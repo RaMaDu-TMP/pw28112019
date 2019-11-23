@@ -1,7 +1,19 @@
 <?php
+    include '../models/grupo.php';
+
     class GrupoController {
         
         public static function insert($grupo) {
+            if (is_null($grupo->getDisciplina())) {
+                throw new InvalidArgumentException("Disciplina can't be null");
+            }
+            if (is_null($grupo->getAluno())) {
+                throw new InvalidArgumentException("Aluno can't be null");
+            }
+            if (is_null($grupo->getProjeto())) {
+                throw new InvalidArgumentException("Projeto can't be null");
+            }
+
             require_once 'database.php';
             $conn = Database::connection();
 

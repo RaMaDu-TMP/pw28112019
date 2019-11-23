@@ -1,4 +1,6 @@
 <?php
+    include '../models/aluno.php';
+
     class AlunoController {
         
         public static function insert($aluno) {

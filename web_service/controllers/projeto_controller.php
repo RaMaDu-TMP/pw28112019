@@ -1,4 +1,6 @@
 <?php
+    include '../models/projeto.php';
+
     class ProjetoController {
         
         public static function insert($projeto) {
