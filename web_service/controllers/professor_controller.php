@@ -1,13 +1,13 @@
 <?php
     class ProfessorController {
         
-        public static function insert($func) {
+        public static function insert($prof) {
             require_once 'database.php';
             $conn = Database::connection();
 
             $stm = $conn->prepare('INSERT INTO professores(nome) VALUES(:nome)');
 
-            $stm->bindValue(":nome", $func->getNome());
+            $stm->bindValue(":nome", $prof->getNome());
             $stm->execute();
         }
 
@@ -19,7 +19,14 @@
             $stm->execute();
 
             $result = $stm->fetchAll();
-            return $result;
+
+            $ret = array();
+            foreach ($result as $r) {
+                $prof = Professor::fromPDO($r);
+                $ret[]=$prof;
+            }
+
+            return $ret;
         }
 
         public static function getById($id) {
@@ -34,27 +41,27 @@
             if (is_null($result) || empty($result)) {
                 return NULL;
             }
-            return $result[0];
+            return Professor::fromPDO($result[0]);
         }
 
-        public static function update($func) {
+        public static function update($prof) {
             require_once 'database.php';
             $conn = Database::connection();
             
             $stm = $conn->prepare('UPDATE professores SET nome = :nome WHERE id = :id');
 
-            $stm->bindValue(":nome", $func->getNome());
+            $stm->bindValue(":nome", $prof->getNome());
 
-            $stm->bindValue(":id", $func->getId());
+            $stm->bindValue(":id", $prof->getId());
             $stm->execute();
         }
 
-        public static function delete($func) {
+        public static function delete($id) {
             require_once 'database.php';
             $conn = Database::connection();
             
             $stm = $conn->prepare('DELETE FROM professores WHERE id = :id');
-            $stm->bindValue(":id", $func->getId());
+            $stm->bindValue(":id", $id);
             $stm->execute();
         }
     }

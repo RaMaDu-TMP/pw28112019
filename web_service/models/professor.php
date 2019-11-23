@@ -1,5 +1,7 @@
 <?php
-    class Professor {
+    include 'exposable.php';
+
+    class Professor implements Exposable {
 
         private $id;
         private $nome;
@@ -24,7 +26,11 @@
         function setNome($nome) {
             $this->nome = $nome;
         }
-        
+
+        function expose() {
+            return get_object_vars($this);
+        }
+
         function printInfo() {
             echo '<br>---------------[PROFESSOR]---------------';
             echo '<br>ID: '.$this->getId();
