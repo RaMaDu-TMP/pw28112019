@@ -4,6 +4,13 @@
     class DisciplinaController {
         
         public static function insert($disciplina) {
+            if (is_null($disciplina->getCurso())) {
+                throw new InvalidArgumentException("Curso can't be null");
+            }
+            if (is_null($disciplina->getProfessor())) {
+                throw new InvalidArgumentException("Professor can't be null");
+            }
+
             require_once 'database.php';
             $conn = Database::connection();
 
