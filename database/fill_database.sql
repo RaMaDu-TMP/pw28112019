@@ -53,7 +53,7 @@ CREATE TABLE `cursos` (
 
 CREATE TABLE `disciplinas` (
   `id` int(11) NOT NULL,
-  `nome` int(11) NOT NULL,
+  `nome` text NOT NULL,
   `turno` text NOT NULL,
   `dia_semana` text NOT NULL,
   `curso_id` int(11) NOT NULL,
@@ -107,7 +107,7 @@ INSERT INTO `professores` (`id`, `nome`) VALUES
 
 CREATE TABLE `projetos` (
   `id` int(11) NOT NULL,
-  `nome` int(11) NOT NULL
+  `nome` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
