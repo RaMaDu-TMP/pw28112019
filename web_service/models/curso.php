@@ -1,5 +1,7 @@
 <?php
-    class Curso {
+    include 'exposable.php';
+
+    class Curso implements Exposable {
 
         private $id;
         private $nome;
@@ -23,6 +25,10 @@
         
         function setNome($nome) {
             $this->nome = $nome;
+        }
+
+        function expose() {
+            return get_object_vars($this);
         }
         
         function printInfo() {

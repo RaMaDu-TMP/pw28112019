@@ -1,5 +1,7 @@
 <?php
-    class Disciplina {
+    include 'exposable.php';
+
+    class Disciplina implements Exposable {
 
         private $id;
         private $nome;
@@ -58,6 +60,10 @@
         
         function setProfessor($professor) {
             $this->professor = $professor;
+        }
+
+        function expose() {
+            return get_object_vars($this);
         }
         
         function printInfo() {

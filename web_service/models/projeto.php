@@ -1,5 +1,7 @@
 <?php
-    class Projeto {
+    include 'exposable.php';
+
+    class Projeto implements Exposable {
 
         private $id;
         private $nome;
@@ -24,11 +26,19 @@
         function setNome($nome) {
             $this->nome = $nome;
         }
+
+        function expose() {
+            return get_object_vars($this);
+        }
         
         function printInfo() {
             echo '<br>---------------[PROJETO]---------------';
             echo '<br>ID: '.$this->getId();
-            echo '<br>Nome: '.$this->getNome();
+            echo '<br>Nome
+
+        function expose() {
+            return get_object_vars($this);
+        }: '.$this->getNome();
             echo '<br>';
         }
         

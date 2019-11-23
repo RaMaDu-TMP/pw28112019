@@ -1,5 +1,7 @@
 <?php
-    class Grupo {
+    include 'exposable.php';
+
+    class Grupo implements Exposable {
 
         private $id;
         private $disciplina;
@@ -50,6 +52,10 @@
             echo '<br>Aluno: '.$this->getAluno();
             echo '<br>Projeto: '.$this->getProjeto();
             echo '<br>';
+        }
+
+        function expose() {
+            return get_object_vars($this);
         }
         
         public static function fromPDO($fPDO) {

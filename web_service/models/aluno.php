@@ -1,5 +1,7 @@
 <?php
-    class Aluno {
+    include 'exposable.php';
+
+    class Aluno implements Exposable {
 
         private $id;
         private $ra;
@@ -33,6 +35,10 @@
         
         function setNome($nome) {
             $this->nome = $nome;
+        }
+
+        function expose() {
+            return get_object_vars($this);
         }
         
         function printInfo() {
