@@ -1,7 +1,6 @@
 <%@ page import="br.edu.usf.ads.web.dao.ProfessorDAO" %>
 <%@ page import="br.edu.usf.ads.web.models.Professor" %>
 <%@ page import="java.util.Collection" %>
-<%@ page import="br.edu.usf.ads.web.utils.JSPUtils" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,36 +16,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="index.css"/>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-            // Activate tooltip
-            $('[data-toggle="tooltip"]').tooltip();
-
-            // Select/Deselect checkboxes
-            var checkbox = $('table tbody input[type="checkbox"]');
-            $("#selectAll").click(function(){
-                if(this.checked){
-                    checkbox.each(function(){
-                        this.checked = true;
-                    });
-                } else{
-                    checkbox.each(function(){
-                        this.checked = false;
-                    });
-                }
-            });
-            checkbox.click(function(){
-                if(!this.checked){
-                    $("#selectAll").prop("checked", false);
-                }
-            });
-        });
-    </script>
+    <script type="text/javascript" src="./index.js"></script>
 </head>
 <body>
+<a type="button" href="../index.jsp" class="btn btn-outline-primary">Voltar</a>
 <div class="container">
     <div class="table-wrapper">
         <div class="table-title">
@@ -55,43 +31,35 @@
                     <h2><b>Professores</b></h2>
                 </div>
                 <div class="col-sm-6">
-                    <a href="#addTeacherModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar novo professor</span></a>
-                    <a href="#deleteTeacherModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Apagar</span></a>
+                    <span class="table-add"><a href="#addModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar novo professor</span></a></span>
                 </div>
             </div>
-        </div>a
-        <table class="table table-striped table-hover">
+        </div>
+        <table class="table table-striped w-auto" id="table">
             <thead>
             <tr>
-                <th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-                </th>
-                <th>ID</th>
-                <th>Nome</th>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             <%
                 Collection<Professor> professores = ProfessorDAO.getAll();
 
-                for (Professor p :
-                        professores) {
-
-                    out.print(JSPUtils.tableRow(p.getId(), p.getId(), p.getNome()));
+                for (Professor p : professores) {
+                    out.print(p.tableRow());
                 }
             %>
             </tbody>
         </table>
     </div>
 </div>
-<!-- Edit Modal HTML -->
-<div id="addTeacherModal" class="modal fade">
+<!-- Add Modal HTML -->
+<div id="addModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form action="ProfessorInsert.jsp" method="post">
                 <div class="modal-header">
                     <h4 class="modal-title">Adicionar Professor</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -99,7 +67,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" id="add-nome" name="nome" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -111,19 +79,19 @@
     </div>
 </div>
 <!-- Edit Modal HTML -->
-<div id="editEmployeeModal" class="modal fade">
+<div id="editModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form action="ProfessorUpdate.jsp" method="post">
                 <div class="modal-header">
                     <h4 class="modal-title">Editar Professor</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <div class="deleteTeacherModalform-group">
+                    <div class="deleteModalform-group">
+                        <input type="hidden" class="form-control" id="edit-id" name="id">
                         <label>Nome</label>
-                        <input type="text" class="form-control" required>
-<%--                        Preencher campo com o dado atual--%>
+                        <input type="text" class="form-control" id="edit-nome" name="nome" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -135,15 +103,16 @@
     </div>
 </div>
 <!-- Delete Modal HTML -->
-<div id="deleteTeacherModal" class="modal fade">
+<div id="deleteModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form action="ProfessorDelete.jsp" method="post">
                 <div class="modal-header">
                     <h4 class="modal-title">Deletar Professor</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" class="form-control" id="delete-id" name="id">
                     <p>Tem certeza que deseja apagar o professor?</p>
                     <p class="text-warning"><small>Esta ação não pode ser desfeita</small></p>
                 </div>

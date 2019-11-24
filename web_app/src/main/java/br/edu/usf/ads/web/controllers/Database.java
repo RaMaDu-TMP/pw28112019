@@ -18,6 +18,10 @@ public class Database {
 
     @Contract(pure = true)
     private Database () {
+        tryToConnect();
+    }
+
+    private static void tryToConnect() {
         String url = "jdbc:mysql://" + host + "/" + db;
 
         try {
@@ -31,6 +35,10 @@ public class Database {
 
     @Contract(pure = true)
     public static Connection connection() {
+        if (conn == null) {
+            tryToConnect();
+        }
+
         return conn;
     }
 }

@@ -23,6 +23,13 @@
     </build>
 
     <dependencies>
+        <!-- Google Guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.1-jre</version>
+        </dependency>
+
         <!-- MySQL Connector-J -->
         <dependency>
             <groupId>mysql</groupId>
