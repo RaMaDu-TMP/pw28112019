@@ -59,7 +59,7 @@
 <div id="addModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="ProfessorInsert.jsp" method="post">
+            <form action="actions/insert.jsp" method="post">
                 <div class="modal-header">
                     <h4 class="modal-title">Adicionar Professor</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -82,7 +82,7 @@
 <div id="editModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="ProfessorUpdate.jsp" method="post">
+            <form action="actions/update.jsp" method="post">
                 <div class="modal-header">
                     <h4 class="modal-title">Editar Professor</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -106,7 +106,7 @@
 <div id="deleteModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="ProfessorDelete.jsp" method="post">
+            <form action="actions/delete.jsp" method="post">
                 <div class="modal-header">
                     <h4 class="modal-title">Deletar Professor</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

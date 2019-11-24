@@ -13,7 +13,7 @@
 
             ProfessorDAO.insert(p);
         }
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("../index.jsp");
     } catch(Exception e) {
         out.print("Erro ao inserir!");
     }

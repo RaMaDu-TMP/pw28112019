@@ -9,7 +9,7 @@
         if (!Strings.isNullOrEmpty(request.getParameter("id"))) {
             ProfessorDAO.delete(Integer.valueOf(request.getParameter("id")));;
         }
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("../index.jsp");
     } catch(Exception e) {
         out.print("Erro ao inserir!");
     }
