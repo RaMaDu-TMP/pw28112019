@@ -11,5 +11,6 @@
   </head>
   <body>
     <input type="button" onclick="location.href='./prof/index.jsp';" value="Professores" />
+    <input type="button" onclick="location.href='./aluno/index.jsp';" value="Alunos" />
   </body>
 </html>

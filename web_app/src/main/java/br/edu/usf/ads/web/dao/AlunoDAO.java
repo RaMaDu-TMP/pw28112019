@@ -78,8 +78,8 @@ public class AlunoDAO {
             PreparedStatement stm = conn.prepareStatement("UPDATE alunos SET ra = ?, nome = ? WHERE id = ?");
 
             stm.setString(1, a.getRa());
-            stm.setString(1, a.getNome());
-            stm.setInt(2, a.getId());
+            stm.setString(2, a.getNome());
+            stm.setInt(3, a.getId());
 
             return stm.execute();
 
