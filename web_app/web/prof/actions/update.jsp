@@ -16,7 +16,7 @@
         }
         response.sendRedirect("../index.jsp");
     } catch(Exception e) {
-        out.print("Erro ao inserir!");
+        out.print("Erro ao atualizar!");
     }
 %>
 </body>
