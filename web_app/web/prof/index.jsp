@@ -1,8 +1,9 @@
 <%@ page import="br.edu.usf.ads.web.dao.ProfessorDAO" %>
 <%@ page import="br.edu.usf.ads.web.models.Professor" %>
 <%@ page import="java.util.Collection" %>
-<!DOCTYPE html>
-<html lang="en">
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
