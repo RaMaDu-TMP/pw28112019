@@ -38,6 +38,11 @@ public class Professor {
         this.nome = nome;
     }
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
     @NotNull
     public static Professor fromDAO(@NotNull ResultSet result) throws SQLException {
         int id = result.getInt("id");

@@ -36,6 +36,11 @@ public class Curso {
         this.nome = nome;
     }
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
     @NotNull
     public static Curso fromDAO(@NotNull ResultSet result) throws SQLException {
         int id = result.getInt("id");

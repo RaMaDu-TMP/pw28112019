@@ -20,9 +20,11 @@ public class DisciplinaDAO {
         Connection conn = Database.connection();
 
         try {
-            PreparedStatement stm = conn.prepareStatement("INSERT INTO disciplinas(nome, nurno, dia_semana, curso_id, professor_id) VALUES(?, ?, ?, ?, ?)");
+            PreparedStatement stm = conn.prepareStatement("INSERT INTO disciplinas(nome, turno, dia_semana, curso_id, professor_id) VALUES(?, ?, ?, ?, ?)");
 
-            return fillStatementFields(disciplina, stm);
+            fillStatementFields(disciplina, stm);
+
+            return stm.execute();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,9 +76,13 @@ public class DisciplinaDAO {
         Connection conn = Database.connection();
 
         try {
-            PreparedStatement stm = conn.prepareStatement("UPDATE disciplinas SET nome = ?, nurno = ?, dia_semana = ?, curso_id = ?, professor_id = ? WHERE id = ?");
+            PreparedStatement stm = conn.prepareStatement("UPDATE disciplinas SET nome = ?, turno = ?, dia_semana = ?, curso_id = ?, professor_id = ? WHERE id = ?");
 
-            return fillStatementFields(disciplina, stm);
+            fillStatementFields(disciplina, stm);
+
+            stm.setInt(6, disciplina.getId());
+
+            return stm.execute();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,7 +106,7 @@ public class DisciplinaDAO {
         return false;
     }
 
-    private static boolean fillStatementFields(@NotNull Disciplina disciplina, @NotNull PreparedStatement stm) throws SQLException {
+    private static void fillStatementFields(@NotNull Disciplina disciplina, @NotNull PreparedStatement stm) throws SQLException {
         stm.setString(1, disciplina.getNome());
 
         String turno = null;
@@ -133,8 +139,6 @@ public class DisciplinaDAO {
 
         stm.setInt(4, cursoId);
         stm.setInt(5, professorId);
-
-        return stm.execute();
     }
 
 }

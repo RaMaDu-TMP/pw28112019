@@ -80,6 +80,11 @@ public class Disciplina {
         this.diaSemana = diaSemana;
     }
 
+    @Override
+    public String toString() {
+        return nome + " - " + turno;
+    }
+
     @NotNull
     public static Disciplina fromDAO(@NotNull ResultSet result) throws SQLException {
         int id = result.getInt("id");
@@ -90,6 +95,21 @@ public class Disciplina {
         Professor professor = ProfessorDAO.getById(result.getInt("professor_id"));
 
         return new Disciplina(id, nome, turno, diaSemana, curso, professor);
+    }
+
+    @NotNull
+    public String tableRow() {
+        return "<tr>" + "<th scope=\"row\">" + id + "</th>" +
+                "<td>" + nome + "</td>" +
+                "<td>" + turno + "</td>" +
+                "<td>" + diaSemana + "</td>" +
+                "<td>" + curso + "</td>" +
+                "<td>" + professor + "</td>" +
+                "<td>" +
+                "<span data-id=\"" + id + "\" data-nome=\"" + nome + "\" data-turno=\"" + turno + "\" data-dia-semana=\"" + diaSemana + "\" data-curso-id=\"" + curso.getId() + "\" data-professor-id=\"" + professor.getId() + "\" class=\"table-edit\"><a href=\"#editModal\" class=\"edit\" data-toggle=\"modal\"><i class=\"material-icons\" data-toggle=\"tooltip\" title=\"Editar\">&#xE254;</i></a></span>" +
+                "<span data-id=\"" + id + "\" data-nome=\"" + nome + "\" data-turno=\"" + turno + "\" data-dia-semana=\"" + diaSemana + "\" data-curso-id=\"" + curso.getId() + "\" data-professor-id=\"" + professor.getId() + "\" class=\"table-remove\"><a href=\"#deleteModal\" class=\"delete\" data-toggle=\"modal\"><i class=\"material-icons\" data-toggle=\"tooltip\" title=\"Deletar\">&#xE872;</i></a></span>" +
+                "</td>" +
+                "</tr>";
     }
 
 }

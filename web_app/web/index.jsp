@@ -18,7 +18,7 @@
       <input type="button" class="btn btn-primary" onclick="location.href='./aluno/index.jsp';" value="Alunos" />
       <input type="button" class="btn btn-primary" onclick="location.href='./curso/index.jsp';" value="Cursos" />
       <input type="button" class="btn btn-primary" onclick="location.href='./disc/index.jsp';" value="Disciplinas" />
-      <input type="button" class="btn btn-primary" onclick="location.href='./grup/index.jsp';" value="Grupos" />
+      <input type="button" class="btn btn-primary" onclick="location.href='./grupo/index.jsp';" value="Grupos" />
       <input type="button" class="btn btn-primary" onclick="location.href='./prof/index.jsp';" value="Professores" />
       <input type="button" class="btn btn-primary" onclick="location.href='./proj/index.jsp';" value="Projetos" />
     </div>

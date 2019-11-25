@@ -46,6 +46,11 @@ public class Aluno {
         this.nome = nome;
     }
 
+    @Override
+    public String toString() {
+        return ra + " - " + nome;
+    }
+
     @NotNull
     public static Aluno fromDAO(@NotNull ResultSet result) throws SQLException {
         int id = result.getInt("id");
