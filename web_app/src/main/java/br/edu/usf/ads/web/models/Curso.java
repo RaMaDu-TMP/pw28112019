@@ -43,4 +43,15 @@ public class Curso {
 
         return new Curso(id, nome);
     }
+
+    @NotNull
+    public String tableRow() {
+        return "<tr>" + "<th scope=\"row\">" + id + "</th>" +
+                "<td>" + nome + "</td>" +
+                "<td>" +
+                "<span data-id=\"" + id + "\" data-nome=\"" + nome + "\" class=\"table-edit\"><a href=\"#editModal\" class=\"edit\" data-toggle=\"modal\"><i class=\"material-icons\" data-toggle=\"tooltip\" title=\"Editar\">&#xE254;</i></a></span>" +
+                "<span data-id=\"" + id + "\" data-nome=\"" + nome + "\" class=\"table-remove\"><a href=\"#deleteModal\" class=\"delete\" data-toggle=\"modal\"><i class=\"material-icons\" data-toggle=\"tooltip\" title=\"Deletar\">&#xE872;</i></a></span>" +
+                "</td>" +
+                "</tr>";
+    }
 }
