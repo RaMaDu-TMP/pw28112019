@@ -7,8 +7,10 @@ Integrantes:
 - 002201800533 - Rafael Soares Tôres
 - 002201800485 - Matheus Gaboardi Tralli
 
-Estrutura das pastas:
-/ -> Raiz do projeto
-  /database -> Arquivos para criar e popular o banco de dados
-  /web_app -> Projeto java para a web app (recomenda-se utilizar o IntelliJ como IDE)
-  /web_service -> Projeto php para o web service
+<p>Estrutura das pastas:</p>
+/ -> Raiz do projeto<br>
+ /database -> Arquivos para criar e popular o banco de dados<br>
+ /web_app -> Projeto java para a web app (recomenda-se utilizar o IntelliJ como IDE)<br>
+  /src -> Código fonte das classes java<br>
+  /web -> Código fonte dos JSPs<br>
+ /web_service -> Código fonte da webservice em php<br>
